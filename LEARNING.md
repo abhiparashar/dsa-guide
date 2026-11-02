@@ -4,19 +4,19 @@ Goal: crack FAANG interviews. Plan: **Round 1** = 3 questions from every Two Poi
 
 ## ▶ Start here (next session)
 
-**I am at:** Two Pointers → Round 1 → **Pattern 1, question 3 of 3**.
+**I am at:** Two Pointers → Round 1 → **Pattern 2, question 1 of 3**. (Pattern 1 Round 1 ✅ done)
 
-**Round 1:** `█░░░░░░░░░░░░░░░░░░░` 2 / 27 (7%)
+**Round 1:** `██░░░░░░░░░░░░░░░░░░` 3 / 27 (11%)
 
-1. Warm-up (2 min): re-read [Pattern 1 → How to recognise it](java/02-two-pointers/README.md#pattern-1-opposite-ends).
-2. Solve [125 Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) → `exercises/Lc125ValidPalindrome.java` (static method style). This finishes P1.
-3. Start **Pattern 2**: read [P2](java/02-two-pointers/README.md#pattern-2-shrink-the-weaker-side), type the template, solve [977](https://leetcode.com/problems/squares-of-a-sorted-array/).
+1. Warm-up (2 min): from memory, say the 3 keywords that mean Pattern 1. Check against [How to recognise it](java/02-two-pointers/README.md#pattern-1-opposite-ends).
+2. Read [Pattern 2: Shrink the Weaker Side](java/02-two-pointers/README.md#pattern-2-shrink-the-weaker-side): How to recognise it → Theory → Dry run.
+3. Type the P2 template, then solve [977 Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/) → `exercises/Lc977SquaresOfASortedArray.java`.
 
 ## Overall
 
 | Topic | Progress | Status |
 |---|---|---|
-| Two Pointers | `█░░░░░░░░░░░░░░░░░░░` 2 / 59 (3%) | 🟡 in progress |
+| Two Pointers | `█░░░░░░░░░░░░░░░░░░░` 3 / 59 (5%) | 🟡 in progress |
 | Sliding Window | `░░░░░░░░░░░░░░░░░░░░` 0 | ⚪ not started |
 | Binary Search | `░░░░░░░░░░░░░░░░░░░░` 0 | ⚪ not started |
 
@@ -26,7 +26,7 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 
 | # | Pattern | Template typed | Solved | Progress |
 |---|---|---|---|---|
-| 1 | Opposite Ends | ✅ T1 pair with sum | 2 / 9 | `████░░░░░░░░░░░░░░░░` 22% |
+| 1 | Opposite Ends | ✅ T1 pair with sum | 3 / 9 | `███████░░░░░░░░░░░░░` 33% |
 | 2 | Shrink the Weaker Side | ⬜ | 0 / 3 | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | 3 | Slow Writer, Fast Reader | ⬜ | 0 / 5 | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | 4 | One Pointer per Input | ⬜ | 0 / 12 | `░░░░░░░░░░░░░░░░░░░░` 0% |
@@ -44,6 +44,7 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 | 2026-11-03 | — | Template: pair with sum | — | P1 | [T1PairWithSum.java](java/02-two-pointers/exercises/T1PairWithSum.java) | Forgot `static`; empty method → "missing return statement" |
 | 2026-11-03 | 167 | [Two Sum II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | Medium | P1 | [Lc167TwoSumII.java](java/02-two-pointers/exercises/Lc167TwoSumII.java) | Returned 0-indexed; problem wants 1-indexed → `left + 1, right + 1` |
 | 2026-11-03 | 344 | [Reverse String](https://leetcode.com/problems/reverse-string/) | Easy | P1 | [Lc344ReverseString.java](java/02-two-pointers/exercises/Lc344ReverseString.java) | None. Naming: `temp` reads better than `swap` |
+| 2026-11-03 | 125 | [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | Easy | P1 | [Lc125ValidPalindrome.java](java/02-two-pointers/exercises/Lc125ValidPalindrome.java) | `strip()` only trims the ends, it doesn't remove `,` `:`; rejected odd lengths, but `aba` is a palindrome |
 
 ## Java things I learned
 
@@ -53,6 +54,9 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 | LeetCode style | `class Solution` with a non-static method; LeetCode does `new Solution()` for you |
 | One `public` class per file | It must match the file name; put `Solution` inside as `static class` to avoid clashes |
 | Swap | Needs a third variable (`temp`), or one value is lost |
+| Clean a String | `str.toLowerCase().replaceAll("[^a-z0-9]", "")` keeps only letters and digits (`^` inside `[ ]` = NOT) |
+| `strip()` | Removes spaces at the start and end only, not in the middle |
+| String vs array length | String: `s.length()` (with `()`); array: `arr.length` (no `()`) |
 
 ## Plan
 
@@ -60,7 +64,7 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 
 | Pattern | Q1 | Q2 | Q3 | Done |
 |---|---|---|---|---|
-| P1 Opposite Ends | ✅ [344](https://leetcode.com/problems/reverse-string/) Easy | ✅ [167](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) Medium | [125](https://leetcode.com/problems/valid-palindrome/) Easy | 2 / 3 |
+| P1 Opposite Ends | ✅ [344](https://leetcode.com/problems/reverse-string/) Easy | ✅ [167](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) Medium | ✅ [125](https://leetcode.com/problems/valid-palindrome/) Easy | 3 / 3 ✅ |
 | P2 Shrink the Weaker Side | [977](https://leetcode.com/problems/squares-of-a-sorted-array/) Easy | [11](https://leetcode.com/problems/container-with-most-water/) Medium | [42](https://leetcode.com/problems/trapping-rain-water/) Hard | 0 / 3 |
 | P3 Slow Writer, Fast Reader | [26](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) Easy | [283](https://leetcode.com/problems/move-zeroes/) Easy | [80](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/) Medium | 0 / 3 |
 | P4 One Pointer per Input | [88](https://leetcode.com/problems/merge-sorted-array/) Easy | [392](https://leetcode.com/problems/is-subsequence/) Easy | [986](https://leetcode.com/problems/interval-list-intersections/) Medium | 0 / 3 |
@@ -70,7 +74,7 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 | P8 Expand From the Center | [5](https://leetcode.com/problems/longest-palindromic-substring/) Medium | [647](https://leetcode.com/problems/palindromic-substrings/) Medium | [1793](https://leetcode.com/problems/maximum-score-of-a-good-subarray/) Hard | 0 / 3 |
 | P9 Reverse a Range | [189](https://leetcode.com/problems/rotate-array/) Medium | [151](https://leetcode.com/problems/reverse-words-in-a-string/) Medium | [31](https://leetcode.com/problems/next-permutation/) Medium | 0 / 3 |
 
-**Round 1 total: 2 / 27.**
+**Round 1 total: 3 / 27.**
 
 **Round 2:** come back to the remaining questions of each pattern in the guide, then the Boss level.
 
