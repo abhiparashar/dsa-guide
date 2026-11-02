@@ -2,7 +2,7 @@
 
 [← Back to the roadmap](../../README.md)
 
-Read this file top to bottom. Each pattern has 4 parts: **Theory → Dry run → Pattern code → Questions (Easy → Medium → Hard)**.
+Read this file top to bottom. Each pattern has 5 parts: **How to recognise it → Theory → Dry run → Pattern code → Questions (Easy → Medium → Hard)**.
 The same code is in [`patterns/`](patterns/) as files you can run, e.g. `java P1OppositeEnds.java`. Your own solutions go in [`exercises/`](exercises/).
 
 ## Contents
@@ -88,7 +88,7 @@ flowchart TD
 
 ### How to practise each pattern
 
-1. Read the **Theory** and say the idea out loud in your own words.
+1. Learn the **keywords** in *How to recognise it*, then read the **Theory** and say the idea out loud in your own words.
 2. Do the **Dry run** on paper: same table, step by step.
 3. Read the **Pattern code**, run it, then close it and **retype it from memory** in `exercises/`.
 4. Solve **Easy → Medium → Hard**. ★ = must-do.
@@ -98,6 +98,18 @@ flowchart TD
 
 ## Pattern 1: Opposite Ends
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| sorted array / "non-decreasing order" | moving a pointer has a known effect: right → smaller, left → bigger |
+| "two numbers", "pair", "sum equals target" | you're looking for a pair |
+| "count pairs" with sum less / greater than X | a pair count, done in one pass |
+| "palindrome", "reverse", "reads the same backward" | compare the two ends |
+| "O(1) extra space" + pairs | no HashMap allowed, so two pointers |
+
+**Not this pattern if:** the array is **unsorted** and you must return the original indexes → HashMap ([1 Two Sum](https://leetcode.com/problems/two-sum/)). Contiguous "subarray / substring" → Sliding Window.
+
 ### Theory
 
 **Idea:** put `left` on the first item and `right` on the last item. Look at the pair, decide, then move ONE of them inward. Stop when they meet.
@@ -105,11 +117,6 @@ flowchart TD
 **Analogy:** two friends stand at the two ends of a bookshelf where prices are sorted from cheap to expensive. They want two books that cost exactly 9 together. Total too high? The friend on the expensive end steps to a cheaper book. Too low? The friend on the cheap end steps to a pricier book.
 
 **Why it's correct (the key thinking):** say `nums[left] + nums[right]` is **too big**. Every pair that uses `right` and something from `left` onward is at least as big (the array is sorted), so `right` can never be in the answer. Throw it away: `right--`. The same logic works for too small → `left++`. Every step safely throws away one item, so there are at most n steps.
-
-**Spot it when you see:**
-- the array is **sorted** and you need a pair with a sum / difference
-- "palindrome", "reverse", "compare from both ends"
-- "count pairs with sum less than / greater than X" on sorted data
 
 **Complexity:** time O(n) (plus O(n log n) if you must sort first), space O(1).
 
@@ -259,6 +266,16 @@ Two Pointers needs **sorted** data (or a symmetric check like a palindrome). On 
 
 ## Pattern 2: Shrink the Weaker Side
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| "maximum area", "most water", "container" | score = min of the two ends × distance |
+| "trap rain water", "bars", "elevation map" | each bar is limited by the max on its left and right |
+| "squares of a sorted array", sorted with negatives | the biggest values are at the two ends, so fill from the back |
+
+**Not this pattern if:** you need the next greater / smaller bar for **every** item → Monotonic Stack.
+
 ### Theory
 
 **Idea:** same start as Pattern 1 (both ends), but there's no exact target. You're looking for the **best** score. Each step, move the pointer that **can't do better by staying**.
@@ -268,11 +285,6 @@ Two Pointers needs **sorted** data (or a symmetric check like a palindrome). On 
 **Why it's correct:** area = `min(h[left], h[right]) × (right - left)`. If `h[left]` is the shorter one, every other pair using `left` has a smaller width and a height ≤ `h[left]`. None of them can beat the area you just measured, so `left` is finished: `left++`.
 
 **Variant: fill from the back.** In "Squares of a Sorted Array", the biggest square is always at one of the two ends (big negatives or big positives). Compare the two ends and write the bigger one into the **last** free slot.
-
-**Spot it when you see:**
-- "max area", "most water", "trapped water"
-- the answer depends on `min` or `max` of the two ends
-- sorted input with negatives where you need sorted squares / absolute values
 
 **Complexity:** time O(n), space O(1) (O(n) when you build a new answer array).
 
@@ -432,6 +444,18 @@ Moving the **taller** wall. The area can only go down, and you miss the answer. 
 
 ## Pattern 3: Slow Writer, Fast Reader
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| "in place" | you can't build a new array |
+| "O(1) extra memory" | only index variables allowed |
+| "remove", "delete", "return k / the new length" | keep some items, drop the rest |
+| "remove duplicates" in a **sorted** array | copies sit next to each other |
+| "move all X to the end", "keep the relative order" | a stable write pointer |
+
+**Not this pattern if:** you need counts of values that are spread out in an **unsorted** array → HashMap.
+
 ### Theory
 
 **Idea:** both pointers move in the **same direction**. `read` visits every item once. `write` points at the next free slot for an item you want to **keep**. Everything before `write` is your finished answer.
@@ -439,11 +463,6 @@ Moving the **taller** wall. The area can only go down, and you miss the answer. 
 **Analogy:** copying a shopping list onto a fresh page and skipping the items you already bought. Your eyes (`read`) go through every line; your pen (`write`) only moves when you copy something.
 
 **Why it works:** `write` never gets ahead of `read`, so you never overwrite an item you haven't read yet. That's why it works **in place** with O(1) extra space.
-
-**Spot it when you see:**
-- "in place", "O(1) extra memory"
-- "remove", "delete duplicates", "return the new length k"
-- "move all X to the end, keep the order of the others"
 
 **Complexity:** time O(n), space O(1).
 
@@ -560,6 +579,19 @@ For "at most k copies", compare with `nums[write - k]` (what you've **kept**), n
 
 ## Pattern 4: One Pointer per Input
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| "two sorted arrays", "two lists" | one pointer in each |
+| "merge" | take the smaller head each step |
+| "is subsequence", "by deleting some characters" | match in order, skipping is allowed |
+| "intersection", "common" | move the one that's behind |
+| "two interval lists", "overlap" | drop the interval that ends first |
+| "backspace", `#` in strings | walk both strings from the back |
+
+**Not this pattern if:** there are **K** sorted lists (not 2) → Heap.
+
 ### Theory
 
 **Idea:** there are **two** inputs (two arrays, two strings, two lists). Pointer `i` walks the first, pointer `j` walks the second. Each step, compare `first[i]` with `second[j]` and move the one that's **behind**.
@@ -569,10 +601,6 @@ For "at most k copies", compare with `nums[write - k]` (what you've **kept**), n
 **Why it works:** both inputs are already in order. The smaller item can't match anything later in the other input (those items are even bigger), so it's safe to move past it. Each pointer only moves forward: O(m + n).
 
 **Variant: work from the back.** In "Merge Sorted Array", the first array has empty space at the end. Filling from the **front** would overwrite numbers you still need. Filling from the **back** (biggest first) never does.
-
-**Spot it when you see:**
-- two sorted arrays / two strings / two interval lists
-- "merge", "intersection", "common", "is subsequence", "compare"
 
 **Complexity:** time O(m + n), space O(1) besides the answer.
 
@@ -754,6 +782,18 @@ The loop stops when **one** input runs out. Always ask: do the leftovers of the 
 
 ## Pattern 5: Sort + Fix One (k-Sum)
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| "triplets", "three numbers", "3Sum" | 1 loop + two pointers |
+| "four numbers", "4Sum" | 2 loops + two pointers |
+| "closest to target" | same as 3Sum, and track the best distance |
+| "unique" / "no duplicate triplets" | sort, then skip repeated values |
+| "triangle", "a + b > c" | fix the biggest side, count pairs |
+
+**Not this pattern if:** you need a contiguous subarray sum → Prefix Sum or Sliding Window.
+
 ### Theory
 
 **Idea:** to find **three** numbers, sort the array, fix the first number with a `for` loop, and then run Pattern 1 (opposite ends) on the part to its right to find the other two.
@@ -769,10 +809,6 @@ The loop stops when **one** input runs out. Always ask: do the leftovers of the 
 | 4Sum | 2 | O(n) | O(n³) |
 
 **Counting variant:** in "Valid Triangle Number", fix the **biggest** side from the right. Then `a + b > biggest` is a pair-count problem: when it works for `left`, it also works for every index between `left` and `right`, so add `right - left`.
-
-**Spot it when you see:**
-- "triplets", "three numbers", "four numbers", "closest sum to target"
-- "unique" / "no duplicate triplets"
 
 **Complexity:** 3Sum: time O(n²), space O(1) besides the answer.
 
@@ -895,6 +931,17 @@ Duplicate triplets. Skip repeated values for the **fixed** number, and for **lef
 
 ## Pattern 6: Partition
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| "only 0, 1 and 2", "sort colors" | Dutch National Flag, 3 pointers |
+| "one pass", "in place", "without a sort function" | partition by swapping |
+| "evens before odds", "by parity" | 2-group partition |
+| "less than pivot first, then equal, then greater" | 3-group partition |
+
+**Not this pattern if:** the values can be anything and you need full sorted order → just sort.
+
 ### Theory
 
 **Idea:** rearrange the array **in place** into groups (all 0s, then 1s, then 2s; or evens, then odds) by swapping. No extra array.
@@ -911,10 +958,6 @@ Duplicate triplets. Skip repeated values for the **fixed** number, and for **lef
 Look at `nums[mid]`: a 0 is swapped into the 0-zone, a 1 stays, a 2 is swapped into the 2-zone. The unknown zone shrinks by one every step.
 
 **Analogy:** sorting laundry into three baskets in a single pass: whites go to the left basket, darks to the right, everything else stays in the middle.
-
-**Spot it when you see:**
-- "only 0, 1 and 2", "sort colors", "one pass"
-- "evens before odds", "smaller than pivot first, then equal, then bigger"
 
 **Complexity:** time O(n) single pass, space O(1).
 
@@ -1033,6 +1076,19 @@ After swapping with `high`, **don't** move `mid`. The item that just arrived fro
 
 ## Pattern 7: Fast & Slow
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| "linked list" + "cycle" / "loop" | fast catches slow |
+| "middle of the linked list" | fast ends when slow is halfway |
+| "n-th node from the end" | same speed with a fixed gap |
+| "palindrome linked list", "reorder list" | find the middle, then reverse half |
+| "n + 1 numbers in range 1..n", "don't modify the array", "O(1) space" | values act as next pointers, and the duplicate is the cycle start |
+| "repeats endlessly", "loops forever" (Happy Number) | cycle detection on a sequence of numbers |
+
+**Not this pattern if:** you need the k-th item from the **start** of an array → just use the index.
+
 ### Theory
 
 **Idea:** two pointers move along the same path at **different speeds**: `slow` takes 1 step, `fast` takes 2 steps.
@@ -1050,11 +1106,6 @@ After swapping with `high`, **don't** move `mid`. The item that just arrived fro
 **Gap variant (same speed):** for "n-th node from the end", move `ahead` n+1 steps first, then move both together. When `ahead` falls off the end, `behind` is right before the node to remove.
 
 **Array variant:** if an array has n+1 numbers in range 1..n, treat each value as "go to this index next". That forms a linked list with a loop, and the loop start is the duplicate number.
-
-**Spot it when you see:**
-- linked list + "cycle", "middle", "n-th from end", "palindrome list", "reorder"
-- "find the duplicate without changing the array, O(1) space"
-- "will this process repeat forever?" (Happy Number)
 
 **Complexity:** time O(n), space O(1).
 
@@ -1261,6 +1312,16 @@ The loop condition must be `fast != null && fast.next != null`. If you only chec
 
 ## Pattern 8: Expand From the Center
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| "palindromic substring", "longest palindrome" | grow from every center |
+| "count palindromic substrings" | count each successful expansion |
+| "must contain index k", "good subarray around k" | start both pointers at k and grow outward |
+
+**Not this pattern if:** it asks for a palindromic **subsequence** (not substring) → DP.
+
 ### Theory
 
 **Idea:** the pointers move **away** from each other. Start both at a center, then grow outward as long as the two ends match.
@@ -1275,10 +1336,6 @@ The loop condition must be `fast != null && fast.next != null`. If you only chec
 | `abba` | even | gap between two letters | `left = i`, `right = i + 1` |
 
 A string of length n has n odd centers + (n − 1) even centers ≈ 2n centers. Each one expands at most n steps, so O(n²) total, with O(1) space.
-
-**Spot it when you see:**
-- "palindromic substring", "longest palindrome", "count palindromes"
-- "grow a window outward from index k"
 
 **Complexity:** time O(n²), space O(1).
 
@@ -1404,6 +1461,17 @@ Checking only odd centers. `"abba"` has an **even** center, so you must try both
 
 ## Pattern 9: Reverse a Range
 
+### How to recognise it
+
+| Keyword / clue in the question | Why it points here |
+|---|---|
+| "rotate the array by k steps" | reverse all, then each part |
+| "reverse the words" | reverse all, then each word |
+| "in place, O(1) extra space" + rearrange | reversing needs only swaps |
+| "next permutation", "next greater arrangement" | find the dip, swap, reverse the tail |
+
+**Not this pattern if:** extra memory is allowed and order is all that matters → copy into a new array.
+
 ### Theory
 
 **Idea:** `reverse(left, right)` is Pattern 1 used as a tool: swap the two ends, walk inward. Many "rotate" and "reorder" problems are just two or three reverses in a row.
@@ -1411,10 +1479,6 @@ Checking only odd centers. `"abba"` has an **even** center, so you must try both
 **Analogy:** to move the last 3 cards of a deck to the front without extra space, flip the whole deck, then flip the first 3 cards back, then flip the rest back.
 
 **Why rotation works:** reversing everything puts the last k items at the front, but backwards. Reversing each part again fixes the order inside each part.
-
-**Spot it when you see:**
-- "rotate the array by k", "in place, O(1) extra space"
-- "reverse the words", "next permutation"
 
 **Complexity:** time O(n), space O(1).
 
