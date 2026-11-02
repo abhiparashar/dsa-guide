@@ -128,3 +128,23 @@ Read the question, find the clue, try the pattern.
 ## About the code
 
 Every template runs on Python 3.9+. Each one ends with `print(...)` calls, and the comment next to each print shows the real output.
+
+---
+
+## Java Track: Two Pointers Deep Dive
+
+My own Java solutions live in [`java/`](java/), one folder per pattern, one file per problem. Run any file with `java FileName.java` (Java 11+).
+
+Two Pointers has 7 sub-patterns. Solve them in this order.
+
+| # | Sub-pattern | Easy | Medium | Hard |
+|---|---|---|---|---|
+| 1 | **Opposite ends** (move toward each other) | [344](https://leetcode.com/problems/reverse-string/), [125](https://leetcode.com/problems/valid-palindrome/) ★, [977](https://leetcode.com/problems/squares-of-a-sorted-array/), [680](https://leetcode.com/problems/valid-palindrome-ii/) | [167](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) ★, [11](https://leetcode.com/problems/container-with-most-water/) ★, [881](https://leetcode.com/problems/boats-to-save-people/) | [42](https://leetcode.com/problems/trapping-rain-water/) ★ |
+| 2 | **Slow writer, fast reader** (same direction, in place) | [27](https://leetcode.com/problems/remove-element/), [26](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) ★, [283](https://leetcode.com/problems/move-zeroes/) ★ | [80](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/) | |
+| 3 | **One pointer per input** (two arrays / strings) | [88](https://leetcode.com/problems/merge-sorted-array/) ★, [392](https://leetcode.com/problems/is-subsequence/), [844](https://leetcode.com/problems/backspace-string-compare/), [349](https://leetcode.com/problems/intersection-of-two-arrays/) | [986](https://leetcode.com/problems/interval-list-intersections/) | [1537](https://leetcode.com/problems/get-the-maximum-score/) |
+| 4 | **Sort + fix one + two pointers** (k-Sum) | | [15](https://leetcode.com/problems/3sum/) ★, [16](https://leetcode.com/problems/3sum-closest/), [611](https://leetcode.com/problems/valid-triangle-number/), [18](https://leetcode.com/problems/4sum/), [923](https://leetcode.com/problems/3sum-with-multiplicity/) | |
+| 5 | **Three pointers / partition** (Dutch flag) | [905](https://leetcode.com/problems/sort-array-by-parity/), [922](https://leetcode.com/problems/sort-array-by-parity-ii/) | [75](https://leetcode.com/problems/sort-colors/) ★ | |
+| 6 | **Fast & slow** (cycles, middle) | [141](https://leetcode.com/problems/linked-list-cycle/) ★, [876](https://leetcode.com/problems/middle-of-the-linked-list/), [202](https://leetcode.com/problems/happy-number/), [234](https://leetcode.com/problems/palindrome-linked-list/) | [142](https://leetcode.com/problems/linked-list-cycle-ii/) ★, [19](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) ★, [287](https://leetcode.com/problems/find-the-duplicate-number/) ★ | |
+| 7 | **Expand from the center** (move away from each other) | | [5](https://leetcode.com/problems/longest-palindromic-substring/) ★, [647](https://leetcode.com/problems/palindromic-substrings/) | [1793](https://leetcode.com/problems/maximum-score-of-a-good-subarray/), [1163](https://leetcode.com/problems/last-substring-in-lexicographical-order/) |
+
+Sliding Window is also a two-pointer idea, but it has its own section: [Pattern 3](01-arrays-and-strings.md#pattern-3-sliding-window).
