@@ -1,6 +1,16 @@
 # My DSA Progress (Java)
 
-Goal: crack FAANG interviews. Plan: one pattern at a time, theory → template → questions Easy → Medium → Hard.
+Goal: crack FAANG interviews. Plan: **Round 1** = 3 questions from every Two Pointers pattern, **Round 2** = the rest. For each pattern: recognise → theory → template → questions.
+
+## ▶ Start here (next session)
+
+**I am at:** Two Pointers → Round 1 → **Pattern 1, question 3 of 3**.
+
+**Round 1:** `█░░░░░░░░░░░░░░░░░░░` 2 / 27 (7%)
+
+1. Warm-up (2 min): re-read [Pattern 1 → How to recognise it](java/02-two-pointers/README.md#pattern-1-opposite-ends).
+2. Solve [125 Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) → `exercises/Lc125ValidPalindrome.java` (static method style). This finishes P1.
+3. Start **Pattern 2**: read [P2](java/02-two-pointers/README.md#pattern-2-shrink-the-weaker-side), type the template, solve [977](https://leetcode.com/problems/squares-of-a-sorted-array/).
 
 ## Overall
 
@@ -64,8 +74,3 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 
 **Round 2:** come back to the remaining questions of each pattern in the guide, then the Boss level.
 
-## Next session
-
-1. Re-read **Pattern 1 → How to recognise it** (2 min warm-up).
-2. Solve [125 Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) → `exercises/Lc125ValidPalindrome.java`. That finishes P1 for Round 1.
-3. Start **Pattern 2**: read it, type the template, solve 977.
