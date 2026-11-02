@@ -8,8 +8,11 @@ public class P6Partition {
 
     // small helper: swap two items of an array
     static void swap(int[] nums, int a, int b) {
+        // remember the first item
         int temp = nums[a];
+        // overwrite the first with the second
         nums[a] = nums[b];
+        // put the remembered first into the second's place
         nums[b] = temp;
     }
 

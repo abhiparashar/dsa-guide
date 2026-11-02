@@ -39,9 +39,11 @@ public class P9ReverseRange {
     // same helper, for a char array
     static void reverse(char[] chars, int left, int right) {
         while (left < right) {
+            // swap the two ends
             char temp = chars[left];
             chars[left] = chars[right];
             chars[right] = temp;
+            // walk inward
             left++;
             right--;
         }
@@ -50,20 +52,25 @@ public class P9ReverseRange {
     // Template B: reverse the order of words (LeetCode 151 idea, single spaces).
     // Reverse the whole thing, then reverse each word back. Time O(n).
     static String reverseWords(String sentence) {
+        // Java Strings can't change, so work on a char array
         char[] chars = sentence.toCharArray();
         // step 1: reverse everything: "the sky is blue" -> "eulb si yks eht"
         reverse(chars, 0, chars.length - 1);
         // step 2: reverse each word back
+        // where the current word begins
         int wordStart = 0;
+        // go one PAST the end, so the last word also gets reversed
         for (int i = 0; i <= chars.length; i++) {
             // a word ends at a space or at the end of the text
             boolean atEnd = i == chars.length;
             if (atEnd || chars[i] == ' ') {
+                // reverse the word that just ended
                 reverse(chars, wordStart, i - 1);
                 // the next word starts after the space
                 wordStart = i + 1;
             }
         }
+        // turn the char array back into a String
         return new String(chars);
     }
 

@@ -52,17 +52,23 @@ public class P8ExpandFromCenter {
             // count palindromes around an even center
             count = count + countAround(text, center, center + 1);
         }
+        // total palindromes
         return count;
     }
 
     // each successful step outward is one more palindrome
     static int countAround(String text, int left, int right) {
+        // palindromes found around this center
         int count = 0;
+        // grow outward while inside the string and the ends match
         while (left >= 0 && right < text.length() && text.charAt(left) == text.charAt(right)) {
+            // text[left..right] is one more palindrome
             count++;
+            // grow one step on each side
             left--;
             right++;
         }
+        // palindromes around this center
         return count;
     }
 

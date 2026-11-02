@@ -8,9 +8,12 @@ public class P7FastSlow {
 
     // a linked list node: a value plus a link to the next node
     static class ListNode {
+        // the number stored in this node
         int val;
+        // the next node in the list (null at the end)
         ListNode next;
 
+        // constructor: make a node holding val
         ListNode(int val) {
             this.val = val;
         }
@@ -52,16 +55,21 @@ public class P7FastSlow {
     // Math fact: after they meet, a pointer from head and a pointer from the meeting
     // point, both moving 1 step, meet exactly at the cycle start.
     static ListNode cycleStart(ListNode head) {
+        // both start at the head
         ListNode slow = head;
         ListNode fast = head;
         // phase 1: find a meeting point inside the loop
         while (fast != null && fast.next != null) {
+            // slow: one step
             slow = slow.next;
+            // fast: two steps
             fast = fast.next.next;
+            // they met inside the loop
             if (slow == fast) {
                 // phase 2: one pointer back to head, both move 1 step
                 ListNode finder = head;
                 while (finder != slow) {
+                    // both move one step at the same speed
                     finder = finder.next;
                     slow = slow.next;
                 }
@@ -76,13 +84,17 @@ public class P7FastSlow {
     // Template C: middle node (LeetCode 876). For an even length, returns the SECOND middle.
     // Time O(n), space O(1).
     static ListNode middle(ListNode head) {
+        // both start at the head
         ListNode slow = head;
         ListNode fast = head;
         // when fast reaches the end, slow has walked half the distance
         while (fast != null && fast.next != null) {
+            // slow: one step
             slow = slow.next;
+            // fast: two steps
             fast = fast.next.next;
         }
+        // slow is in the middle
         return slow;
     }
 
@@ -97,15 +109,18 @@ public class P7FastSlow {
         ListNode behind = dummy;
         // move ahead n + 1 steps, so the gap between them is n + 1
         for (int step = 0; step <= n; step++) {
+            // one step forward
             ahead = ahead.next;
         }
         // move both until ahead falls off the end
         while (ahead != null) {
+            // both move one step, the gap stays the same
             ahead = ahead.next;
             behind = behind.next;
         }
         // behind is now just before the node to remove: skip over it
         behind.next = behind.next.next;
+        // dummy.next is the (maybe new) head
         return dummy.next;
     }
 
@@ -113,19 +128,24 @@ public class P7FastSlow {
     // Treat value as "next pointer": index -> nums[index]. The duplicate is the cycle start.
     // Time O(n), space O(1), array not changed.
     static int findDuplicate(int[] nums) {
-        // phase 1: find a meeting point
+        // phase 1: index 0 is the "head"; slow takes 1 hop, fast takes 2 hops
         int slow = nums[0];
         int fast = nums[nums[0]];
+        // keep hopping until they land on the same index
         while (slow != fast) {
+            // slow: one hop
             slow = nums[slow];
+            // fast: two hops
             fast = nums[nums[fast]];
         }
-        // phase 2: find the cycle start
+        // phase 2: one pointer back to the start, both hop once per step
         int finder = 0;
+        // they meet at the cycle start = the duplicate value
         while (finder != slow) {
             finder = nums[finder];
             slow = nums[slow];
         }
+        // the cycle start is the duplicate number
         return finder;
     }
 
