@@ -1,5 +1,8 @@
 # DSA Guide: Top 1% Track (Python)
 
+> **☕ Learning in Java?** Start here: **[Two Pointers in Java: theory + Java code + questions](java/02-two-pointers/README.md)**.
+> Everything below this line is the Python version.
+
 A complete roadmap of the **35 patterns** behind most coding interview questions at large tech companies (Google, Meta, Amazon, Microsoft, Apple, and others).
 
 For every pattern you get:
