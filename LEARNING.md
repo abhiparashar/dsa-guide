@@ -2,8 +2,11 @@
 
 Goal: crack FAANG interviews. Plan: **Round 1** = 3 questions from every Two Pointers pattern, **Round 2** = the rest. For each pattern: recognise → theory → template → questions.
 
-## How every question must be explained to me
+## How questions are given to me
 
+**Default: just the question link + file name. No explanation.**
+
+Only when I ask "explain", use this format:
 1. **What it asks**: input, task, in one or two plain lines.
 2. **Example table**: Input → each step → Output (✅ / ❌).
 3. **Why it's tricky**: the one thing that breaks the easy idea.
