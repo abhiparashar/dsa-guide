@@ -17,9 +17,9 @@ Goal: crack FAANG interviews. Plan: **Round 1** = 3 questions from every Two Poi
 
 **Round 1:** `██░░░░░░░░░░░░░░░░░░` 3 / 27 (11%)
 
-1. Warm-up (2 min): from memory, say the 3 keywords that mean Pattern 1. Check against [How to recognise it](java/02-two-pointers/README.md#pattern-1-opposite-ends).
-2. Read [Pattern 2: Shrink the Weaker Side](java/02-two-pointers/README.md#pattern-2-shrink-the-weaker-side): How to recognise it → Theory → Dry run.
-3. Type the P2 template, then solve [977 Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/) → `exercises/Lc977SquaresOfASortedArray.java`.
+1. Warm-up (2 min): explain out loud why `write` starts at `nums.length - 1` in [T2SortedSquares.java](java/02-two-pointers/exercises/T2SortedSquares.java).
+2. P2 template ✅ typed. Now solve [977 Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/) on your own → `exercises/Lc977SquaresOfASortedArray.java` (don't look at T2).
+3. Then P2 question 2: [11 Container With Most Water](https://leetcode.com/problems/container-with-most-water/).
 
 ## Overall
 
@@ -36,7 +36,7 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 | # | Pattern | Template typed | Solved | Progress |
 |---|---|---|---|---|
 | 1 | Opposite Ends | ✅ T1 pair with sum | 3 / 9 | `███████░░░░░░░░░░░░░` 33% |
-| 2 | Shrink the Weaker Side | ⬜ | 0 / 3 | `░░░░░░░░░░░░░░░░░░░░` 0% |
+| 2 | Shrink the Weaker Side | ✅ T2 sorted squares | 0 / 3 | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | 3 | Slow Writer, Fast Reader | ⬜ | 0 / 5 | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | 4 | One Pointer per Input | ⬜ | 0 / 12 | `░░░░░░░░░░░░░░░░░░░░` 0% |
 | 5 | Sort + Fix One (k-Sum) | ⬜ | 0 / 6 | `░░░░░░░░░░░░░░░░░░░░` 0% |
@@ -54,6 +54,7 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 | 2026-11-03 | 167 | [Two Sum II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/) | Medium | P1 | [Lc167TwoSumII.java](java/02-two-pointers/exercises/Lc167TwoSumII.java) | Returned 0-indexed; problem wants 1-indexed → `left + 1, right + 1` |
 | 2026-11-03 | 344 | [Reverse String](https://leetcode.com/problems/reverse-string/) | Easy | P1 | [Lc344ReverseString.java](java/02-two-pointers/exercises/Lc344ReverseString.java) | None. Naming: `temp` reads better than `swap` |
 | 2026-11-03 | 125 | [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/) | Easy | P1 | [Lc125ValidPalindrome.java](java/02-two-pointers/exercises/Lc125ValidPalindrome.java) | `strip()` only trims the ends, it doesn't remove `,` `:`; rejected odd lengths, but `aba` is a palindrome |
+| 2026-11-03 | — | Template: sorted squares | — | P2 | [T2SortedSquares.java](java/02-two-pointers/exercises/T2SortedSquares.java) | `result = new int[]{...}` replaced the whole array (use `result[write] = x`); no `write` slot; moved both pointers instead of only the one placed |
 
 ## Java things I learned
 
@@ -66,6 +67,7 @@ Guide: [java/02-two-pointers/README.md](java/02-two-pointers/README.md)
 | Clean a String | `str.toLowerCase().replaceAll("[^a-z0-9]", "")` keeps only letters and digits (`^` inside `[ ]` = NOT) |
 | `strip()` | Removes spaces at the start and end only, not in the middle |
 | String vs array length | String: `s.length()` (with `()`); array: `arr.length` (no `()`) |
+| `arr = new int[]{...}` vs `arr[i] = x` | The first **replaces** the whole array; the second **fills one slot** |
 
 ## Plan
 
